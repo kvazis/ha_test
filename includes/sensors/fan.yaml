@@ -1,0 +1,8 @@
+  - platform: template
+    sensors:
+      smartmi_mode:
+        friendly_name: 'Режим увлажнителя'
+        # entity_id:
+        #   - sensor.time
+        value_template: "{{ state_attr('fan.gg_humidifier', 'mode') }}"
+        icon_template: mdi:speedometer

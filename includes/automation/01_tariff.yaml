@@ -1,0 +1,15 @@
+- alias: tariff_change
+  initial_state: true
+  trigger:
+    - platform: time
+      at: '09:00:00'
+    - platform: time
+      at: '20:00:00'
+    - platform: time
+      at: '23:00:00'
+  action:
+   - service: utility_meter.next_tariff
+     entity_id: 
+        - utility_meter.um_three_daily_158d0001fa2934
+        - utility_meter.um_three_monthly_158d0001fa2934
+        - utility_meter.um_three_yearly_158d0001fa2934

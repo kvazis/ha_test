@@ -1,0 +1,12 @@
+- id: Тестовая запись времени
+  alias: mqtt_time
+  initial_state: true
+  trigger:
+   - platform: time_pattern
+     minutes: '/1'
+  action: 
+    - service: mqtt.publish
+      data_template:
+        topic: "test/time"
+        payload: "{{ states('sensor.time_date')}}"
+        retain: true

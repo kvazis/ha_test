@@ -1,0 +1,43 @@
+## Включение режима обогрева
+- alias: air_heater_on
+# Состояние при запуске НА, для активации изменить на true
+  initial_state: false
+  trigger:
+# Температура - ниже 19 С
+   - platform: numeric_state
+     entity_id: sensor.temperature
+     below: 19
+  condition:
+# Жалюзи кондиционера закрыты
+  - condition: state
+    entity_id: binary_sensor.door_window_sensor
+    state: 'off'
+  action:
+# Запуск режима обогрева
+  - service: remote.send_command
+    data:
+      entity_id: remote.rm_mini
+      device: air conditioner
+      command: heat 25
+      
+## Выключение режима обогрева
+- alias: air_heater_off
+# Состояние при запуске НА, для активации изменить на true
+  initial_state: false
+  trigger:
+# Температура - выше 22 С
+   - platform: numeric_state
+     entity_id: sensor.temperature
+     above: 22
+  condition:
+# Жалюзи кондиционера открыты
+  - condition: state
+    entity_id: binary_sensor.door_window_sensor
+    state: 'on'
+  action:
+# Запуск режима обогрева
+  - service: remote.send_command
+    data:
+      entity_id: remote.rm_mini
+      device: air conditioner
+      command: off

@@ -1,0 +1,48 @@
+utility_next_tariff:
+  sequence:
+   - service: utility_meter.next_tariff
+     entity_id: 
+        - utility_meter.daily_158d0001fa2934
+        - utility_meter.monthly_158d0001fa2934
+        - utility_meter.yearly_158d0001fa2934
+        - utility_meter.daily_wifi_6port
+        - utility_meter.monthly_wifi_6port
+        - utility_meter.yearly_wifi_6port
+        
+utility_day_tariff:
+  sequence:
+   - service: utility_meter.select_tariff
+     data:
+       entity_id:
+        - utility_meter.daily_158d0001fa2934
+        - utility_meter.monthly_158d0001fa2934
+        - utility_meter.yearly_158d0001fa2934
+        - utility_meter.daily_wifi_6port
+        - utility_meter.monthly_wifi_6port
+        - utility_meter.yearly_wifi_6port
+       tariff: day
+
+utility_night_tariff:
+  sequence:
+   - service: utility_meter.select_tariff
+     data:
+       entity_id:
+        - utility_meter.daily_158d0001fa2934
+        - utility_meter.monthly_158d0001fa2934
+        - utility_meter.yearly_158d0001fa2934
+        - utility_meter.daily_wifi_6port
+        - utility_meter.monthly_wifi_6port
+        - utility_meter.yearly_wifi_6port
+       tariff: night
+       
+utility_meter_reset:
+  sequence:
+   - service: utility_meter.reset
+     data: 
+       entity_id:
+        - utility_meter.daily_158d0001fa2934
+        - utility_meter.daily_wifi_6port
+        
+        
+        
+        

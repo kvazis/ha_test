@@ -1,0 +1,6 @@
+  backup:
+    duration: '00:15:00'
+    
+  zigbee_permit_join:
+    name: Time remaining
+    duration: 600

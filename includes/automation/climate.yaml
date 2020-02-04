@@ -1,0 +1,48 @@
+- alias: auto_humidity
+  id: 'Увлажнение'
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id:
+      - input_number.humidity_level
+      - sensor.humidity_158d000159c7e6
+      - binary_sensor.test_hum_mode
+  action:
+    service_template: >-
+      {% set hi = (states('input_number.humidity_level') | float) + 5 %}
+      {% set lo = (states('input_number.humidity_level') | float) - 5 %}
+      {% set humidity = states('sensor.humidity_158d000159c7e6') | float %}
+      {% if humidity > hi %}
+        switch.turn_off
+      {%- elif states.binary_sensor.test_hum_mode.state == 'off' -%} 
+        switch.turn_off
+      {% elif humidity < lo and states.binary_sensor.test_hum_mode.state == 'on' %}
+        switch.turn_on
+      {% else %}
+        switch.turn_{{states('switch.test_humidifier') | lower}}
+      {% endif %}
+    entity_id: switch.test_humidifier
+
+    
+- alias: change_level
+  id: 'Режим'
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id:
+      - input_select.himidifier_mode
+  action:
+  - service: fan.set_speed
+    entity_id: 
+       - fan.gg_humidifier
+    data_template: 
+      data: >-
+        {% if states.input_select.himidifier_mode.state == 'Auto' %}
+          Auto
+        {% elif states.input_select.himidifier_mode.state == 'Silent'  %} 
+          Silent
+        {% elif states.input_select.himidifier_mode.state == 'Medium' %}
+          Medium
+        {% elif states.input_select.himidifier_mode.state == 'High' %}
+          High
+        {% endif %}

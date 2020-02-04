@@ -1,0 +1,17 @@
+  - platform: mqtt
+    name: test_heater
+    state_topic: "test/test_heater"
+    payload_on: "ON"
+    payload_off: "OFF"
+    
+  - platform: mqtt
+    name: test_humidifier
+    state_topic: "test/test_humidifier"
+    payload_on: "ON"
+    payload_off: "OFF"
+    
+  - platform: mqtt
+    name: test_hum_mode
+    state_topic: "test/test_hum_mode"
+    payload_on: "ON"
+    payload_off: "OFF"

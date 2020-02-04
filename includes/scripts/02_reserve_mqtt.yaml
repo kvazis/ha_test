@@ -1,0 +1,12 @@
+  telegramm_reserve_system:
+    sequence:
+     - service: notify.telegram
+       data:
+         message: | 
+             Резервный сервер Khadas VIM 2
+             Отчет за {{ states('sensor.reserve_system_send') }} 
+             Бытовые сценарии - {{ states('sensor.reserve_system_scenario') }} 
+             {{"\U0001F4A1"}} недоступно - {{ states('sensor.reserve_system_unavailable_now_light') }} 
+             {{"\U0001F50C"}} недоступно - {{ states('sensor.reserve_system_unavailable_now_switch') }} 
+             Сенсоров недоступно - {{ states('sensor.reserve_system_unavailable_now_sensor') }} 
+             Бинарных сенсоров недоступно - {{ states('sensor.reserve_system_unavailable_now_binary_sensor') }} 

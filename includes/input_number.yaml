@@ -1,0 +1,7 @@
+  humidity_level:
+    name: Уровень влажности
+    initial: 50
+    min: 30
+    max: 60
+    step: 1
+    

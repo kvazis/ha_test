@@ -1,0 +1,45 @@
+  tv_power_broadlink:
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.rm_mini
+          device: television
+          command: power
+
+  tv_vup_broadlink:
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.rm_mini
+          device: television
+          command: volume up
+          num_repeats: 3
+
+  tv_vdown_broadlink:
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.rm_mini
+          device: television
+          command: volume down
+          num_repeats: 3
+          delay_secs: 1
+          
+  tv_menu_broadlink:
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.rm_mini
+          device: television
+          command: 
+            - menu
+            - left
+            - left
+            - ok 
+          delay_secs: 1
+            
+            
+            
+            
+            
+            

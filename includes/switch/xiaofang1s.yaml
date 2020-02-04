@@ -1,0 +1,8 @@
+
+#   - platform: mqtt
+#     name: xiaofang_ir_cut
+#     state_topic: "camera/xiaofang1s/ir_cut"
+#     payload_on: "ON"
+#     payload_off: "OFF"
+#     state_on: "ON"
+#     state_off: "OFF"

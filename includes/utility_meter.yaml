@@ -1,0 +1,43 @@
+## Расчет на 1 тариф
+  um_one_daily_158d0001fa2934:
+    source: sensor.load_158d0001fa2934_int
+    cycle: daily
+    tariffs:
+      - electicity
+
+  um_one_monthly_158d0001fa2934:
+    source: sensor.load_158d0001fa2934_int
+    cycle: monthly
+    tariffs:
+      - electicity
+
+  um_one_yearly_158d0001fa2934:
+    source: sensor.load_158d0001fa2934_int
+    cycle: yearly
+    tariffs:
+      - electicity
+
+## Расчет на 3 тарифа
+  um_three_daily_158d0001fa2934:
+    source: sensor.load_158d0001fa2934_int
+    cycle: daily
+    tariffs:
+      - day
+      - evening
+      - night
+    
+  um_three_monthly_158d0001fa2934:
+    source: sensor.load_158d0001fa2934_int
+    cycle: monthly
+    tariffs:
+      - day
+      - evening
+      - night
+    
+  um_three_yearly_158d0001fa2934:
+    source: sensor.load_158d0001fa2934_int
+    cycle: yearly
+    tariffs:
+      - day
+      - evening
+      - night

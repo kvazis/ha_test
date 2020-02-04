@@ -1,0 +1,16 @@
+  - platform: generic_thermostat
+    name: da_heater
+    heater: switch.test_heater
+    target_sensor: sensor.temperature_158d000159c7e6
+    min_temp: 19
+    max_temp: 23
+    ac_mode: false
+    target_temp: 21
+    cold_tolerance: 0.3
+    hot_tolerance: 0
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 20

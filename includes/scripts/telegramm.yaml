@@ -1,0 +1,6 @@
+  telegramm_start:
+    sequence:
+     - service: notify.telegram
+       data:
+         message: | 
+             Cервер Raspberry Pi 3 B запущен в {{ states('sensor.time_date') }} 

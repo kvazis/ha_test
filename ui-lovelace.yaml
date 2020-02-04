@@ -1,0 +1,638 @@
+title: Home Assistant - сервер
+views:
+
+  - title: Главная
+    # id: main
+    icon: mdi:home-assistant
+    
+#    badges:
+#      - sensor.time
+#      - sensor.date
+#      - sensor.home_assistant_v2_db
+
+
+    cards:
+
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          content: >
+             **Состояние сервера**
+    
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.last_boot_custom
+            name: Сервер в онлайне -
+            icon: mdi:av-timer
+          - entity: sensor.online_custom
+            name: Home Assistant в онлайне -
+            icon: mdi:clock
+          - type: divider
+          - entity: sensor.current_ha
+            name: Установлен Home Assistant -
+            icon: mdi:alpha-v-circle
+          - entity: sensor.version
+            name: Последний Home Assistant -
+            icon: mdi:alpha-v-circle-outline
+
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: sensor.time
+              name: Текущее время - 
+              icon: mdi:clock
+              secondary_info: entity-id
+            - entity: sensor.date
+              name: Дата - 
+              icon: mdi:calendar
+              secondary_info: entity-id
+            - entity: sensor.home_assistant_v2_db
+              name: Объем базы данных HA - 
+              icon: mdi:database
+              secondary_info: entity-id
+            - entity: sensor.maria_db_size
+              name: Объем базы данных Maria - 
+              icon: mdi:database
+              secondary_info: entity-id              
+            - type: divider            
+            - type: call-service
+              icon: mdi:database-minus
+              name: База данных
+              action_name: Сжать
+              service: recorder.purge
+              service_data:
+                keep_days: 1
+                repack: true
+
+
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          content: >
+               **Система**   
+
+        - type: horizontal-stack
+          cards:
+
+          - type: gauge
+            name: Загрузка CPU
+            unit: '%'
+            entity: sensor.processor_use
+            severity:
+               green: 0
+               yellow: 60
+               red: 85 
+
+          - type: gauge
+            name: Загрузка ОЗУ
+            unit: '%'
+            entity: sensor.memory_use_percent
+            severity:
+               green: 0
+               yellow: 60
+               red: 85 
+
+        - type: markdown
+          content: >
+               **Cостояние серверов**   
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.main_state
+            name: Raspberry Pi 3 B+ в онлайне -
+            icon: mdi:clock-outline
+          - entity: sensor.reserve_state
+            name: Khadas VIM2 в онлайне -
+            icon: mdi:clock-outline
+            
+        - type: entities
+          title: Zigbee
+          show_header_toggle: false
+          entities:
+             - entity: input_boolean.zigbee_permit_join
+             - entity: timer.zigbee_permit_join
+             - entity: sensor.bridge_state
+
+
+
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          content: >
+           **База, резервное копирование**
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: script.ha_backup
+              name: Снапшот
+              icon: mdi:backup-restore 
+            - entity: counter.backup_stage
+              name: Фаза бэкапа - 
+            - entity: sensor.backup_phaze
+              name: Действие - 
+            - entity: timer.backup
+              name: Фаза завершается через - 
+            - entity: sensor.last_google_backup
+              icon: mdi:map-clock-outline
+            - entity: sensor.last_google_filecount
+              icon: mdi:file-search
+            - entity: sensor.last_google_alreadycount
+              icon: mdi:file-export
+            - entity: sensor.last_google_backedupcount
+              icon: mdi:google-plus-box
+            - entity: sensor.last_google_deletedcount
+              icon: mdi:file-remove
+            - entity: sensor.last_google_deletedfromgoogle
+              icon: mdi:folder-google-drive
+
+
+  - title: Инфо
+    id: control
+    icon: mdi:information-variant  
+    
+    cards:
+
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          content: >
+             **Растения**
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.yucca_light_intensity
+          - entity: sensor.yucca_moisture
+          - entity: sensor.yucca_temperature
+          - entity: sensor.yucca_conductivity
+          - entity: sensor.yucca_battery
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.dieffenbac_light_intensity
+          - entity: sensor.dieffenbac_moisture
+          - entity: sensor.dieffenbac_temperature
+          - entity: sensor.dieffenbac_conductivity
+          - entity: sensor.dieffenbac_battery
+ 
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.zamiokulkas_light_intensity
+          - entity: sensor.zamiokulkas_moisture
+          - entity: sensor.zamiokulkas_temperature
+          - entity: sensor.zamiokulkas_conductivity
+          - entity: sensor.zamiokulkas_battery
+ 
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.deep_purple_battery
+          - entity: sensor.true_blue_battery
+    
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          content: >
+             **Google Fit Alex**
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.alex_steps
+          - entity: sensor.alex_steps_remain
+          - entity: sensor.alex_distance
+          - entity: sensor.alex_move_time_custom
+          - entity: sensor.alex_heartrate
+          - entity: sensor.alex_heartrate_update 
+          - entity: sensor.alex_sleep
+          - entity: sensor.alex_weight
+          - entity: sensor.alex_weight_update
+
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          content: >
+             **Тестовые сенсоры**
+             
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: binary_sensor.home_motion
+
+
+
+  - title: Тренды
+    id: data
+    icon: mdi:chart-gantt
+
+    cards:
+    
+      - type: vertical-stack
+        cards:
+
+        - type: history-graph
+          title: 'Давление'
+          entities:
+              - sensor.pressure_158d0001fa8321
+              
+        - type: history-graph
+          title: 'Изменение температуры'
+          entities:
+              - entity: sensor.temperature_158d000156e92e
+                name: Комната
+              - entity: sensor.temperature_158d000171ffde
+                name: Коридор
+                
+      - type: vertical-stack
+        cards:
+
+        - type: horizontal-stack
+          cards:        
+            - type: light
+              entity: light.yeelight_05_ceiling1
+              name: Панель
+            - type: light
+              entity: light.yeelight_05_ceiling1_nightlight
+              name: Ночник      
+
+
+        - type: sensor
+          name: 'Освещенность'
+          entity: sensor.illumination_f0b429cc1f11
+          graph: line
+
+        - type: weather-forecast
+          entity: weather.home  
+          
+
+          
+      - type: vertical-stack
+        cards:          
+
+        - type: markdown
+          content: >
+             Обычный текст
+    
+        - type: markdown
+          content: >
+             *Текст курсивом*
+
+        - type: markdown
+          content: >
+             **Жирный текст**
+             
+        - type: markdown
+          content: >
+             [Ссылка](https://www.home-assistant.io)
+
+        - type: glance
+          title: Сенсоры протечки
+          show_state: false
+          entities:
+             - entity: binary_sensor.water_leak_sensor_158d0001bb60c2
+               name: Кухня
+             - entity: binary_sensor.water_leak_sensor_158d0001bbeba6
+               name: Прачечная
+             - entity: binary_sensor.water_leak_sensor_158d0001d72fa2
+               name: Туалет
+             - entity: binary_sensor.water_leak_sensor_158d0002705b7b
+               name: Ванная
+
+        - type: markdown
+          content: >
+             **Сенсоры протечки**
+             
+        - type: glance
+          show_state: false
+          entities:
+             - entity: binary_sensor.water_leak_sensor_158d0001bb60c2
+               name: Кухня
+             - entity: binary_sensor.water_leak_sensor_158d0001bbeba6
+               name: Прачечная
+             - entity: binary_sensor.water_leak_sensor_158d0001d72fa2
+               name: Туалет
+             - entity: binary_sensor.water_leak_sensor_158d0002705b7b
+               name: Ванная
+
+        - type: entities
+          show_state: false
+          entities:
+             - entity: script.xiaomi_learn
+             - entity: automation.mqtt_time
+             - entity: script.01_sound_check
+             - entity: script.test
+             
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: switch.sonoff_1000d036a0_1
+            - entity: switch.sonoff_1000d036a0_2
+            - entity: switch.sonoff_1000d036a0_3
+            - entity: switch.sonoff_1000d036a0_4
+
+  - title: Utility meter
+    id: power
+    icon: mdi:compare
+
+    cards:
+
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          content: >
+             **Zigbee**
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.load_158d0001fa2934
+            name: Текущее потребление Вт
+          - entity: sensor.load_158d0001fa2934_int
+            name: Интеграционный сенсор
+
+        - type: markdown
+          content: >
+             **Utility meter Вт - 1 тариф**
+ 
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.um_one_daily_158d0001fa2934_electicity
+            name: День
+          - entity: sensor.money_day_158d0001fa2934_day
+          - entity: sensor.um_one_monthly_158d0001fa2934_electicity
+            name: Месяц
+          - entity: sensor.money_month_158d0001fa2934_month
+          - entity: sensor.um_one_yearly_158d0001fa2934_electicity
+            name: Год
+          - entity: sensor.money_month_158d0001fa2934_yearly
+
+        - type: markdown
+          content: >
+             **Utility meter Вт - 3 тарифа**
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.um_three_daily_158d0001fa2934_day
+            name: День - дневной
+          - entity: sensor.um_three_daily_158d0001fa2934_evening
+            name: День - вечерний
+          - entity: sensor.um_three_daily_158d0001fa2934_night
+            name: День - ночной
+          - type: divider
+          - entity: sensor.um_three_monthly_158d0001fa2934_day
+            name: Месяц - дневной
+          - entity: sensor.um_three_monthly_158d0001fa2934_evening
+            name: Месяц - вечерний
+          - entity: sensor.um_three_monthly_158d0001fa2934_night
+            name: Месяц - ночной
+          - type: divider
+          - entity: sensor.um_three_yearly_158d0001fa2934_day
+            name: Год - дневной
+          - entity: sensor.um_three_yearly_158d0001fa2934_evening
+            name: Год - вечерний
+          - entity: sensor.um_three_yearly_158d0001fa2934_night
+            name: Год - ночной
+
+        - type: markdown
+          content: >
+             **Стоимость** 
+     
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.money_yearly_158d0001fa2934_day
+          - entity: sensor.money_yearly_158d0001fa2934_evening
+          - entity: sensor.money_yearly_158d0001fa2934_night
+          
+      - type: vertical-stack
+        cards:
+        - type: markdown
+          content: >
+             **Сравнительные показания**
+    
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.load_158d0001fa2934
+            name: Текущее потребление Вт
+
+        - type: markdown
+          content: >
+             **Mqtt Вт**
+
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.mqtt_power_today_158d0001fa2934
+            name: День
+          - entity: sensor.mqtt_power_month_158d0001fa2934
+            name: Месяц
+            
+        - type: markdown
+          content: >
+             **Стоимость** 
+     
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: sensor.money_mqtt_day_158d0001fa2934
+          - entity: sensor.money_mqtt_month_158d0001fa2934
+
+
+  - title: video
+    id: video
+    icon: mdi:cctv
+
+    cards:
+      - type: vertical-stack
+        cards:
+        
+        - type: picture-entity
+          entity: camera.xiaofang
+          camera_view: live 
+          show_state: false
+          show_name: false
+          
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: script.photo_xiaofang
+              icon: mdi:camera
+            - entity: script.video_xiaofang
+              icon: mdi:record-rec 
+            - entity: script.photo2_xiaofang
+              icon: mdi:camera
+            - entity: script.video2_xiaofang
+              icon: mdi:record-rec 
+              
+      - type: vertical-stack
+        cards:
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: switch.xiaofang1s_ir_filter
+            - entity: switch.xiaofang1s_ir_led
+            - entity: switch.xiaofang1s_night_mode
+            - entity: switch.xiaofang1s_night_mode_auto
+            - entity: switch.xiaofang1s_motion_detection            
+            - entity: binary_sensor.xiaofang1s_motion_sensor
+            
+
+
+  - title: ir_control
+    id: ir
+    icon: mdi:remote
+
+     
+    cards:
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          content: >
+             **Телевизор**    
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: script.learn_broadlink
+            name: Обучение телевизор
+            icon: mdi:cast-education
+          - type: call-service
+            icon: mdi:television-box
+            name: Телевизор
+            action_name: Power
+            service: remote.send_command
+            service_data:
+              entity_id: remote.rm_mini
+              device: television
+              command: power
+          - type: call-service
+            icon: mdi:arrow-up
+            name: Телевизор
+            action_name: Громкость +3
+            service: remote.send_command
+            service_data:
+              entity_id: remote.rm_mini
+              device: television
+              command: volume up
+              num_repeats: 3
+              delay_secs: 1
+          - type: call-service
+            icon: mdi:arrow-down
+            name: Телевизор
+            action_name: Громкость -3
+            service: remote.send_command
+            service_data:
+              entity_id: remote.rm_mini
+              device: television
+              command: volume down
+              num_repeats: 3
+              delay_secs: 1     
+
+      - type: vertical-stack
+        cards:
+
+        - type: markdown
+          content: >
+             **Кондиционер**               
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: script.learn_broadlink_1
+            name: Обучение кондиционер
+            icon: mdi:cast-education
+          - type: call-service
+            icon: mdi:radiator
+            name: Кондиционер
+            action_name: Режим обогрева +25
+            service: remote.send_command
+            service_data:
+              entity_id: remote.rm_mini
+              device: air conditioner
+              command: heat 25  
+          - type: call-service
+            icon: mdi:snowflake-alert
+            name: Кондиционер
+            action_name: Режим охлаждения +18
+            service: remote.send_command
+            service_data:
+              entity_id: remote.rm_mini
+              device: air conditioner
+              command: cold 18 
+          - type: call-service
+            icon: mdi:air-conditioner
+            name: Кондиционер
+            action_name: Режим вентиляции
+            service: remote.send_command
+            service_data:
+              entity_id: remote.rm_mini
+              device: air conditioner
+              command: vent
+          - type: call-service
+            icon: mdi:power-off
+            name: Кондиционер
+            action_name: Выключение
+            service: remote.send_command
+            service_data:
+              entity_id: remote.rm_mini
+              device: air conditioner
+              command: off
+                
+  - title: Климат
+    id: climate
+    icon: mdi:home-thermometer
+
+    cards:
+
+      - type: vertical-stack
+        cards:
+
+        - type: thermostat
+          entity: climate.da_heater
+          
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: script.climate_no_home
+              name: Температура никого нет дома
+            - entity: script.climate_home
+              name: Температура дома
+          
+        - type: entities
+          show_header_toggle: false
+          entities:
+            - entity: binary_sensor.test_heater
+            - entity: switch.test_heater
+
+      - type: vertical-stack
+        cards:            
+
+        - type: entities
+          show_header_toggle: false
+          entities: 
+            - entity: sensor.humidity_158d000159c7e6         
+            - entity: input_number.humidity_level
+            - entity: binary_sensor.test_humidifier
+            - entity: switch.test_humidifier
+            - entity: binary_sensor.test_hum_mode
+            - entity: switch.test_hum_mode
+            
+        - type: entities
+          show_header_toggle: false
+          entities: 
+            - entity: fan.gg_humidifier
+            - entity: sensor.smartmi_mode
+            - entity: input_select.himidifier_mode

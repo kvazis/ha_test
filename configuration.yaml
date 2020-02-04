@@ -1,0 +1,126 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude_coord
+  longitude: !secret longitude_coord
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Kiev
+  # Customization file
+#   customize: !include customize.yaml
+  customize: !include_dir_merge_named includes/customize
+  auth_providers:
+   - type: homeassistant
+   - type: legacy_api_password
+     api_password: !secret http_password
+  
+  whitelist_external_dirs :
+   - /config
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+lovelace:
+  mode: yaml
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+tuya:
+  username: !secret tuya_username
+  password: !secret tuya_password
+  country_code: 380
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret api_key_72
+    allowed_chat_ids:
+      - !secret chat_id_alex
+      - !secret chat_id_olha
+
+xiaomi_aqara:
+  discovery_retry: 10
+  gateways:
+    - mac: F0:B4:29:CC:1F:11
+      key: !secret gateway1_api
+      host: 192.168.0.80
+    - mac: 28:6C:07:F0:AD:27
+      key: !secret gateway2_api
+      host: 192.168.0.81
+    - mac: 34:CE:00:88:B0:39
+      key: !secret gateway3_api
+      host: 192.168.0.82
+    - mac: 78:11:DC:64:F4:C8
+      key: !secret gateway4_api
+      host: 192.168.0.83
+    - mac: F0:B4:29:CC:38:13
+      key: !secret gateway5_api
+      host: 192.168.0.84
+
+
+mqtt:
+  broker: 192.168.0.77
+  discovery: true
+  discovery_prefix: homeassistant
+  username: mqtt
+  password: mqtt
+  
+# mqtt_statestream:
+#   base_topic: instance/test
+#   include:
+#     entities:
+#       - sensor.last_boot_custom
+#       - sensor.online_custom
+
+
+air_quality:
+  - platform: xiaomi_miio
+    name: 05_air_monitor
+    host: 192.168.0.142
+    token: 5233595a56594a4e55724b4967513542
+    
+remote:
+#   - platform: broadlink
+#     host: 192.168.0.246
+#     mac: '24:DF:A7:42:C2:8D'
+#     name: rm_mini
+
+  - platform: xiaomi_miio
+    name: xiaomi_base
+    host: 192.168.0.135
+    token: db472a45b4f1913439abaab3f7ff6356
+    slot: 3
+    timeout: 30
+    hidden: false
+
+#Вынос в папки
+sensor: !include_dir_merge_list includes/sensors
+binary_sensor: !include_dir_merge_list includes/bin_sensor
+automation: !include_dir_merge_list includes/automation
+switch: !include_dir_merge_list includes/switch
+script: !include_dir_merge_named includes/scripts
+
+#Вынос в файлы
+fan: !include includes/fan.yaml
+input_select: !include includes/input_select.yaml
+input_number: !include includes/input_number.yaml
+input_boolean: !include includes/input_boolean.yaml
+climate: !include includes/climate.yaml
+mqtt_statestream: !include includes/mqtt_statestream.yaml
+yeelight: !include includes/yeelight.yaml
+camera: !include includes/camera.yaml
+recorder: !include includes/recorder.yaml
+notify: !include includes/notify.yaml
+rest_command: !include includes/rest_command.yaml
+timer: !include includes/timer.yaml
+counter: !include includes/counter.yaml
+utility_meter: !include includes/utility_meter.yaml

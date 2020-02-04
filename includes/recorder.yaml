@@ -1,0 +1,8 @@
+  db_url: !secret db_link
+  purge_keep_days: 1
+  include:
+    domains:
+      - switch
+      - light
+      - binary_sensor
+      - sensor

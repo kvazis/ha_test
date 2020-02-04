@@ -1,0 +1,31 @@
+  - platform: integration
+    source: sensor.load_158d0001fa2934
+    name: load_158d0001fa2934_int
+    unit_prefix: k
+    unit_time: h
+    unit: 'КВт*ч'
+    round: 3
+    
+#   - platform: integration
+#     source: sensor.one_monthly_158d0001fa2934_day
+#     name: one_monthly_158d0001fa2934_spent
+#     unit_prefix: k
+#     round: 2
+    
+#   - platform: integration
+#     source: sensor.one_yearly_158d0001fa2934_day
+#     name: one_yearly_158d0001fa2934_spent
+#     unit_prefix: k
+#     round: 2
+
+#   - platform: integration
+#     source: sensor.daily_158d0001fa2934
+#     name: daily_158d0001fa2934_spent
+#     unit_prefix: k
+#     round: 2
+    
+#   - platform: integration
+#     source: sensor.monthly_158d0001fa2934
+#     name: monthly_158d0001fa2934_spent
+#     unit_prefix: k
+#     round: 2

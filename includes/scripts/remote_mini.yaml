@@ -1,0 +1,20 @@
+  learn_broadlink:
+    sequence:
+      - service: remote.learn_command
+        data:
+          entity_id: remote.rm_mini
+          device: television
+          command:
+            - power
+            - volume up
+            - volume down
+            
+  learn_broadlink_1:
+    sequence:
+      - service: remote.learn_command
+        data:
+          entity_id: remote.rm_mini
+          device: air conditioner
+          command:
+            - heat 25
+            - off

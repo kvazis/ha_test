@@ -1,0 +1,20 @@
+  climate_no_home:
+    sequence:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.da_heater
+          target_temp_low: 17
+          temperature: 19
+          target_temp_high: 21
+          hvac_mode: heat
+          
+  climate_home:
+    sequence:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.da_heater
+          target_temp_low: 19
+          temperature: 21
+          target_temp_high: 23
+          hvac_mode: heat
+    

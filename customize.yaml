@@ -1,0 +1,23 @@
+# binary_sensor.door_window_sensor_158d0001193697:
+#   friendly_name: Окно
+#   device_class: window
+  
+# binary_sensor.door_window_sensor_158d0001583c7b:
+#   friendly_name: Дверь
+#   device_class: door
+
+# sensor.alex_steps:
+#  friendly_name: Пройдено -
+#  unit_of_measurement: шагов
+# sensor.alex_weight:
+#  friendly_name: Текущий вес - 
+#  unit_of_measurement: кг
+# sensor.alex_distance:
+#  friendly_name: Пройденное расстояние - 
+#  unit_of_measurement: км
+# sensor.alex_sleep:
+#  friendly_name: Отдых - 
+#  unit_of_measurement: сон
+# sensor.alex_heartrate:
+#  friendly_name: Пульс - 
+#  unit_of_measurement: уд/мин

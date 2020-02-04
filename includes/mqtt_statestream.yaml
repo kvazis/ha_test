@@ -1,0 +1,5 @@
+  base_topic: instance/test
+  include:
+    entities:
+      - sensor.last_boot_custom
+      - sensor.online_custom

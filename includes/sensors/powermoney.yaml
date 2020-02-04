@@ -1,0 +1,68 @@
+# Cтоимость по 1 тарифу
+
+  - platform: template
+    sensors:
+      money_day_158d0001fa2934_day:
+        friendly_name: "Стоимость за текущий день"
+        unit_of_measurement: 'грн'
+        value_template: "{{ (states.sensor.um_one_daily_158d0001fa2934_electicity.state | float * 1.68)|round(2) }}"
+        icon_template: mdi:square-inc-cash 
+    
+  - platform: template
+    sensors:
+      money_month_158d0001fa2934_month:
+        friendly_name: "Стоимость за текущий месяц"
+        unit_of_measurement: 'грн'
+        value_template: "{{ (states.sensor.um_one_monthly_158d0001fa2934_electicity.state | float * 1.68)|round(2) }}"
+        icon_template: mdi:square-inc-cash 
+        
+  - platform: template
+    sensors:
+      money_month_158d0001fa2934_yearly:
+        friendly_name: "Стоимость за текущий год"
+        unit_of_measurement: 'грн'
+        value_template: "{{ (states.sensor.um_one_yearly_158d0001fa2934_electicity.state | float * 1.68)|round(2) }}"
+        icon_template: mdi:square-inc-cash        
+
+# Cтоимость по 3 тарифам за год        
+  - platform: template
+    sensors:
+      money_yearly_158d0001fa2934_day:
+        friendly_name: "Стоимость по дневному тарифу за год -"
+        unit_of_measurement: 'грн'
+        value_template: "{{ (states.sensor.um_three_yearly_158d0001fa2934_day.state | float * 0.00168)|round(2) }}"
+        icon_template: mdi:square-inc-cash 
+
+  - platform: template
+    sensors:
+      money_yearly_158d0001fa2934_evening:
+        friendly_name: "Стоимость по вечернему тарифу за год -"
+        unit_of_measurement: 'грн'
+        value_template: "{{ (states.sensor.um_three_yearly_158d0001fa2934_evening.state | float * 0.00105)|round(2) }}"
+        icon_template: mdi:square-inc-cash 
+        
+  - platform: template
+    sensors:
+      money_yearly_158d0001fa2934_night:
+        friendly_name: "Стоимость по ночному тарифу за год -"
+        unit_of_measurement: 'грн'
+        value_template: "{{ (states.sensor.um_three_yearly_158d0001fa2934_night.state | float * 0.00075)|round(2) }}"
+        icon_template: mdi:square-inc-cash 
+
+# Сравнительная стоимость mqtt
+  - platform: template
+    sensors:
+      money_mqtt_day_158d0001fa2934:
+        friendly_name: "Стоимость за текущий день"
+        unit_of_measurement: 'грн'
+        value_template: "{{ (states.sensor.mqtt_power_today_158d0001fa2934.state | float * 1.68)|round(2) }}"
+        icon_template: mdi:square-inc-cash 
+    
+  - platform: template
+    sensors:
+      money_mqtt_month_158d0001fa2934:
+        friendly_name: "Стоимость за текущий месяц"
+        unit_of_measurement: 'грн'
+        value_template: "{{ (states.sensor.mqtt_power_month_158d0001fa2934.state | float * 1.68)|round(2) }}"
+        icon_template: mdi:square-inc-cash 
+        

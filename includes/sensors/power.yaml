@@ -1,0 +1,22 @@
+  - platform: template
+    sensors:
+      load_158d0001fa2934:
+        friendly_name: 'Zigbee'
+        value_template: "{{ state_attr('switch.plug_158d0001fa2934', 'load_power') }}"
+        icon_template: mdi:flash
+        unit_of_measurement: 'Вт'
+        entity_id: switch.plug_158d0001fa2934
+
+  - platform: mqtt
+    state_topic: "power/158d0001fa2934/today"
+    name: 'mqtt_power_today_158d0001fa2934'
+    unit_of_measurement: 'кВт⋅ч'
+
+  - platform: mqtt
+    state_topic: "power/158d0001fa2934/month"
+    name: 'mqtt_power_month_158d0001fa2934'
+    unit_of_measurement: 'кВт⋅ч'
+
+
+
+

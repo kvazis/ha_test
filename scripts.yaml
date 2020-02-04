@@ -1,0 +1,6 @@
+'1578224596632':
+  alias: miio
+  sequence:
+  - data: {}
+    entity_id: remote.xiaomi_miio
+    service: xiaomi_miio.remote_learn_command
